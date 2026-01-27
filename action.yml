@@ -22,4 +22,6 @@ runs:
   using: docker
   image: docker://lpodkalicki/avr-toolchain
   entrypoint: make 
-  args: ['--directory=${{inputs.dir}}', "sh", "-c", "echo CFLAGS+=${{inputs.extra_cflags}}", '${{inputs.target}}']
+  args: ['--directory=${{inputs.dir}}', '$TARGET']
+  env:
+    TARGET: ${{inputs.target}}
