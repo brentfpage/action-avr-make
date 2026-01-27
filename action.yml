@@ -10,8 +10,8 @@ inputs:
     default: '.'
     required: false
     type: string
-  macro_defines:
-    description: for defining macros
+  extra_cflags:
+    description: to be appended to CFLAGS in the makefile
     required: false
     type: string
   target:
@@ -22,4 +22,4 @@ runs:
   using: docker
   image: docker://lpodkalicki/avr-toolchain
   entrypoint: make 
-  args: ['--directory=${{inputs.dir}}', '${{inputs.macro_defines}}', '${{inputs.target}}']
+  args: ['--directory=${{inputs.dir}}', 'CFLAGS+=${{inputs.extra_cflags}}', '${{inputs.target}}']
