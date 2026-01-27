@@ -10,6 +10,10 @@ inputs:
     default: '.'
     required: false
     type: string
+  macro_defines:
+    description: for defining macros
+    required: false
+    type: string
   target:
     description: target to make
     required: true
@@ -18,4 +22,4 @@ runs:
   using: docker
   image: docker://lpodkalicki/avr-toolchain
   entrypoint: make 
-  args: ['--directory=${{inputs.dir}}', '${{inputs.target}}']
+  args: ['--directory=${{inputs.dir}}', '${{inputs.macro_defines}}', '${{inputs.target}}']
